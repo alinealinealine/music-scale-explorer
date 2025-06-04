@@ -64,23 +64,26 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      {/* Bauhaus Header */}
+      <header className="bg-white border-b-4 border-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <Music className="text-primary text-2xl mr-3" />
-              <h1 className="text-2xl font-bold text-gray-900">Scale Explorer</h1>
+            <div className="flex items-center space-x-4">
+              {/* Geometric logo */}
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-primary border-2 border-black"></div>
+                <div className="w-6 h-6 bg-secondary border-2 border-black"></div>
+                <div className="w-4 h-4 bg-accent border-2 border-black"></div>
+              </div>
+              <h1 className="text-3xl font-black text-foreground tracking-wider">SCALE EXPLORER</h1>
             </div>
-            <div className="hidden md:flex items-center space-x-4">
-              <Button variant="ghost" className="text-gray-600 hover:text-primary">
-                <HelpCircle className="w-4 h-4 mr-2" />
-                Help
-              </Button>
-              <Button variant="ghost" className="text-gray-600 hover:text-primary">
-                <Settings className="w-4 h-4 mr-2" />
-                Settings
-              </Button>
+            <div className="hidden md:flex items-center space-x-3">
+              <button className="bauhaus-btn accent px-4 py-2 text-sm">
+                HELP
+              </button>
+              <button className="bauhaus-btn primary px-4 py-2 text-sm">
+                SETTINGS
+              </button>
             </div>
           </div>
         </div>
