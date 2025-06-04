@@ -1,5 +1,6 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Play, Square } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Play, Square, HelpCircle } from "lucide-react";
 import { SCALE_DEFINITIONS, NOTE_NAMES } from "@/lib/scale-definitions";
 
 interface ScaleSelectorProps {
@@ -38,65 +39,87 @@ export function ScaleSelector({
   ];
 
   return (
-    <div className="minimal-card p-6">
-      <h2 className="text-lg font-semibold text-foreground mb-6">
-        Scale Configuration
-      </h2>
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {/* Scale Type Selector */}
-        <div>
-          <label className="block text-sm font-medium text-muted-foreground mb-2">Scale Type</label>
-          <Select value={selectedScale} onValueChange={onScaleChange}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select a scale" />
-            </SelectTrigger>
-            <SelectContent>
-              {scaleOptions.map(option => (
-                <SelectItem key={option.value} value={option.value}>
-                  {option.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+    <TooltipProvider>
+      <div className="minimal-card p-6">
+        <h2 className="text-lg font-semibold text-foreground mb-6">
+          Scale Configuration
+        </h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Scale Type Selector */}
+          <div>
+            <div className="flex items-center gap-1 mb-2">
+              <label className="block text-sm font-medium text-muted-foreground">Scale Type</label>
+              <Tooltip>
+                <TooltipTrigger>
+                  <HelpCircle className="w-3 h-3 text-muted-foreground" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>A scale is a pattern of musical notes. Different scales create different moods - major sounds happy, minor sounds sad.</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+            <Select value={selectedScale} onValueChange={onScaleChange}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select a scale" />
+              </SelectTrigger>
+              <SelectContent>
+                {scaleOptions.map(option => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
 
-        {/* Root Note Selector */}
-        <div>
-          <label className="block text-sm font-medium text-muted-foreground mb-2">Root Note</label>
-          <Select value={rootNote} onValueChange={onRootNoteChange}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select root note" />
-            </SelectTrigger>
-            <SelectContent>
-              {rootNoteOptions.map(option => (
-                <SelectItem key={option.value} value={option.value}>
-                  {option.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+          {/* Root Note Selector */}
+          <div>
+            <div className="flex items-center gap-1 mb-2">
+              <label className="block text-sm font-medium text-muted-foreground">Root Note</label>
+              <Tooltip>
+                <TooltipTrigger>
+                  <HelpCircle className="w-3 h-3 text-muted-foreground" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>The root note is the starting note of your scale. It's like the home base - the scale is named after this note.</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+            <Select value={rootNote} onValueChange={onRootNoteChange}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select root note" />
+              </SelectTrigger>
+              <SelectContent>
+                {rootNoteOptions.map(option => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
 
-        {/* Play Controls */}
-        <div className="flex flex-col justify-end space-y-2">
-          <button 
-            onClick={onPlayScale}
-            className="minimal-btn primary px-4 py-2 text-sm disabled:opacity-50"
-            disabled={isPlaying}
-          >
-            <Play className="w-4 h-4 mr-2 inline" />
-            {isPlaying ? 'Playing...' : 'Play Scale'}
-          </button>
-          <button 
-            onClick={onStopAudio}
-            className="minimal-btn text-sm"
-          >
-            <Square className="w-4 h-4 mr-2 inline" />
-            Stop
-          </button>
+          {/* Play Controls */}
+          <div className="flex flex-col justify-end space-y-2">
+            <button 
+              onClick={onPlayScale}
+              className="minimal-btn primary px-4 py-2 text-sm disabled:opacity-50"
+              disabled={isPlaying}
+            >
+              <Play className="w-4 h-4 mr-2 inline" />
+              {isPlaying ? 'Playing...' : 'Play Scale'}
+            </button>
+            <button 
+              onClick={onStopAudio}
+              className="minimal-btn text-sm"
+            >
+              <Square className="w-4 h-4 mr-2 inline" />
+              Stop
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </TooltipProvider>
   );
 }

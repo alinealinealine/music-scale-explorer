@@ -1,4 +1,6 @@
 import { SCALE_DEFINITIONS, ScaleNote, getFormulaSteps } from "@/lib/scale-definitions";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { HelpCircle } from "lucide-react";
 
 interface ScaleInfoProps {
   selectedScale: string;
@@ -34,39 +36,50 @@ export function ScaleInfo({ selectedScale, rootNote, scaleNotes, onSelectScale }
   const relatedScales = getRelatedScales();
 
   return (
-    <div className="minimal-card p-6">
-      <h3 className="text-lg font-semibold text-foreground mb-4">
-        Scale Information
-      </h3>
-      
-      <div className="space-y-4">
-        {/* Current Scale Display */}
-        <div>
-          <h4 className="font-semibold text-foreground mb-2">
-            {rootNote} {currentScale.name}
-          </h4>
-          <p className="text-sm text-muted-foreground">{currentScale.description}</p>
-        </div>
-
-        {/* Scale Formula */}
-        <div>
-          <h5 className="font-medium text-foreground mb-2">Interval Formula</h5>
-          <div className="flex flex-wrap gap-1">
-            {formulaSteps.map((step, index) => (
-              <div
-                key={index}
-                className={`px-2 py-1 rounded text-xs font-medium ${
-                  step.isWhole 
-                    ? 'bg-scale-highlight/10 text-accent border border-accent/20' 
-                    : 'bg-muted text-muted-foreground'
-                }`}
-              >
-                {step.step}
-              </div>
-            ))}
+    <TooltipProvider>
+      <div className="minimal-card p-6">
+        <h3 className="text-lg font-semibold text-foreground mb-4">
+          Scale Information
+        </h3>
+        
+        <div className="space-y-4">
+          {/* Current Scale Display */}
+          <div>
+            <h4 className="font-semibold text-foreground mb-2">
+              {rootNote} {currentScale.name}
+            </h4>
+            <p className="text-sm text-muted-foreground">{currentScale.description}</p>
           </div>
-          <p className="text-xs text-muted-foreground mt-1">W = Whole Step, H = Half Step</p>
-        </div>
+
+          {/* Scale Formula */}
+          <div>
+            <div className="flex items-center gap-1 mb-2">
+              <h5 className="font-medium text-foreground">Interval Formula</h5>
+              <Tooltip>
+                <TooltipTrigger>
+                  <HelpCircle className="w-3 h-3 text-muted-foreground" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>This shows the pattern of steps between notes. W = whole step (2 keys apart), H = half step (1 key apart).</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+            <div className="flex flex-wrap gap-1">
+              {formulaSteps.map((step, index) => (
+                <div
+                  key={index}
+                  className={`px-2 py-1 rounded text-xs font-medium ${
+                    step.isWhole 
+                      ? 'bg-scale-highlight/10 text-accent border border-accent/20' 
+                      : 'bg-muted text-muted-foreground'
+                  }`}
+                >
+                  {step.step}
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">W = Whole Step, H = Half Step</p>
+          </div>
 
         {/* Scale Notes */}
         <div>
@@ -119,5 +132,6 @@ export function ScaleInfo({ selectedScale, rootNote, scaleNotes, onSelectScale }
         )}
       </div>
     </div>
+    </TooltipProvider>
   );
 }
