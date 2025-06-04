@@ -1,6 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { SCALE_DEFINITIONS, ScaleNote, getFormulaSteps } from "@/lib/scale-definitions";
 
 interface ScaleInfoProps {
@@ -18,7 +15,6 @@ export function ScaleInfo({ selectedScale, rootNote, scaleNotes, onSelectScale }
   const formulaSteps = getFormulaSteps(currentScale.formula);
   
   const getRelatedScales = () => {
-    // Return some related scales based on the current selection
     const related = [];
     
     if (selectedScale === 'major') {
@@ -32,96 +28,97 @@ export function ScaleInfo({ selectedScale, rootNote, scaleNotes, onSelectScale }
       related.push({ key: 'pentatonic-minor', name: `${rootNote} Pentatonic Minor` });
     }
     
-    return related.slice(0, 2); // Limit to 2 related scales
+    return related.slice(0, 2);
   };
 
   const relatedScales = getRelatedScales();
 
   return (
-    <Card className="shadow-sm border border-gray-200">
-      <CardContent className="p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Scale Information</h3>
-        
-        <div className="space-y-4">
-          {/* Current Scale Display */}
-          <div>
-            <h4 className="font-medium text-gray-900 mb-2">
-              {rootNote} {currentScale.name}
-            </h4>
-            <p className="text-sm text-gray-600">{currentScale.description}</p>
-          </div>
-
-          {/* Scale Formula */}
-          <div>
-            <h5 className="font-medium text-gray-700 mb-2">Interval Formula</h5>
-            <div className="flex flex-wrap gap-1">
-              {formulaSteps.map((step, index) => (
-                <Badge
-                  key={index}
-                  variant="outline"
-                  className={step.isWhole ? 'bg-blue-100 text-blue-800 border-blue-200' : 'bg-gray-100 text-gray-600 border-gray-200'}
-                >
-                  {step.step}
-                </Badge>
-              ))}
-            </div>
-            <p className="text-xs text-gray-500 mt-1">W = Whole Step, H = Half Step</p>
-          </div>
-
-          {/* Scale Notes */}
-          <div>
-            <h5 className="font-medium text-gray-700 mb-2">Notes in Scale</h5>
-            <div className="grid grid-cols-4 gap-2">
-              {scaleNotes.map((note, index) => (
-                <div
-                  key={`${note.name}-${index}`}
-                  className="text-center p-2 bg-red-500 text-white rounded-lg"
-                >
-                  <div className="font-medium">{note.name}</div>
-                  <div className="text-xs">{note.degree}</div>
-                </div>
-              ))}
-              
-              {/* Fill remaining slots for visual consistency */}
-              {Array.from({ length: Math.max(0, 8 - scaleNotes.length) }).map((_, index) => (
-                <div
-                  key={`empty-${index}`}
-                  className="text-center p-2 bg-gray-100 text-gray-400 rounded-lg"
-                >
-                  <div className="font-medium">-</div>
-                  <div className="text-xs">{scaleNotes.length + index + 1}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Common Usage */}
-          <div>
-            <h5 className="font-medium text-gray-700 mb-2">Common Usage</h5>
-            <p className="text-sm text-gray-600">{currentScale.usage}</p>
-          </div>
-
-          {/* Related Scales */}
-          {relatedScales.length > 0 && (
-            <div>
-              <h5 className="font-medium text-gray-700 mb-2">Related Scales</h5>
-              <div className="flex flex-wrap gap-2">
-                {relatedScales.map((scale) => (
-                  <Button
-                    key={scale.key}
-                    onClick={() => onSelectScale(scale.key)}
-                    variant="outline"
-                    size="sm"
-                    className="text-sm hover:bg-gray-100"
-                  >
-                    {scale.name}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          )}
+    <div className="bauhaus-card red p-6">
+      <h3 className="text-lg font-black text-foreground mb-4 flex items-center">
+        <div className="bauhaus-circle w-4 h-4 bg-secondary mr-3"></div>
+        SCALE INFORMATION
+      </h3>
+      
+      <div className="space-y-4">
+        {/* Current Scale Display */}
+        <div>
+          <h4 className="font-black text-foreground mb-2 uppercase tracking-wide">
+            {rootNote} {currentScale.name}
+          </h4>
+          <p className="text-sm text-gray-600 font-medium">{currentScale.description}</p>
         </div>
-      </CardContent>
-    </Card>
+
+        {/* Scale Formula */}
+        <div>
+          <h5 className="font-bold text-foreground mb-2 uppercase tracking-wide">INTERVAL FORMULA</h5>
+          <div className="flex flex-wrap gap-1">
+            {formulaSteps.map((step, index) => (
+              <div
+                key={index}
+                className={`px-2 py-1 border-2 border-black font-bold text-xs ${
+                  step.isWhole 
+                    ? 'bg-primary text-white' 
+                    : 'bg-gray-200 text-gray-800'
+                }`}
+              >
+                {step.step}
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-gray-600 font-bold mt-1">W = WHOLE STEP, H = HALF STEP</p>
+        </div>
+
+        {/* Scale Notes */}
+        <div>
+          <h5 className="font-bold text-foreground mb-2 uppercase tracking-wide">NOTES IN SCALE</h5>
+          <div className="grid grid-cols-4 gap-2">
+            {scaleNotes.map((note, index) => (
+              <div
+                key={`${note.name}-${index}`}
+                className="text-center p-2 bg-secondary text-white border-2 border-black font-bold"
+              >
+                <div className="font-black">{note.name}</div>
+                <div className="text-xs">{note.degree}</div>
+              </div>
+            ))}
+            
+            {Array.from({ length: Math.max(0, 8 - scaleNotes.length) }).map((_, index) => (
+              <div
+                key={`empty-${index}`}
+                className="text-center p-2 bg-gray-200 text-gray-600 border-2 border-black font-bold"
+              >
+                <div className="font-black">-</div>
+                <div className="text-xs">{scaleNotes.length + index + 1}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Common Usage */}
+        <div>
+          <h5 className="font-bold text-foreground mb-2 uppercase tracking-wide">COMMON USAGE</h5>
+          <p className="text-sm text-gray-600 font-medium">{currentScale.usage}</p>
+        </div>
+
+        {/* Related Scales */}
+        {relatedScales.length > 0 && (
+          <div>
+            <h5 className="font-bold text-foreground mb-2 uppercase tracking-wide">RELATED SCALES</h5>
+            <div className="flex flex-wrap gap-2">
+              {relatedScales.map((scale) => (
+                <button
+                  key={scale.key}
+                  onClick={() => onSelectScale(scale.key)}
+                  className="bauhaus-btn accent px-3 py-2 text-xs"
+                >
+                  {scale.name.toUpperCase()}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }

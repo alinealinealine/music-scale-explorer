@@ -1,5 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+
 import { audioEngine } from "@/lib/audio-engine";
 import { ScaleNote, getAllPianoNotes, NOTE_NAMES } from "@/lib/scale-definitions";
 import { useState } from "react";
@@ -104,12 +103,14 @@ export function PianoKeyboard({ scaleNotes }: PianoKeyboardProps) {
   };
 
   return (
-    <Card className="shadow-sm border border-gray-200">
-      <CardContent className="p-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-6">Piano Keyboard</h2>
-        
-        {/* Piano Keyboard Container */}
-        <div className="relative overflow-x-auto pb-4">
+    <div className="bauhaus-card red p-6">
+      <h2 className="text-xl font-black text-foreground mb-6 flex items-center">
+        <div className="w-6 h-6 bg-primary border-2 border-black mr-3"></div>
+        PIANO KEYBOARD
+      </h2>
+      
+      {/* Piano Keyboard Container */}
+      <div className="relative overflow-x-auto pb-4">
           <div className="piano-keyboard flex relative min-w-max mx-auto" style={{ width: `${whiteKeys.length * 60}px` }}>
             
             {/* White Keys */}
@@ -159,19 +160,21 @@ export function PianoKeyboard({ scaleNotes }: PianoKeyboardProps) {
           </div>
         </div>
 
-        {/* Scale Degree Indicators */}
-        <div className="mt-4 flex flex-wrap justify-center gap-2">
-          {getScaleDegrees().map((degree, index) => (
-            <Badge
-              key={degree.degree}
-              variant={degree.isActive ? "default" : "secondary"}
-              className={`${degree.isActive ? 'bg-red-500 hover:bg-red-600 text-white' : 'bg-gray-200 text-gray-700'}`}
-            >
-              {degree.degree} - {degree.name}
-            </Badge>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+      {/* Scale Degree Indicators */}
+      <div className="mt-4 flex flex-wrap justify-center gap-2">
+        {getScaleDegrees().map((degree, index) => (
+          <div
+            key={degree.degree}
+            className={`px-3 py-1 border-2 border-black font-bold text-xs uppercase tracking-wide ${
+              degree.isActive 
+                ? 'bg-secondary text-white' 
+                : 'bg-gray-200 text-gray-700'
+            }`}
+          >
+            {degree.degree} - {degree.name}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
