@@ -40,12 +40,12 @@ export function ScaleSelector({
 
   return (
     <TooltipProvider>
-      <div className="minimal-card p-6">
-        <h2 className="text-lg font-semibold text-foreground mb-6">
-          Scale Configuration
+      <div className="minimal-card p-12">
+        <h2 className="text-2xl font-bold text-black mb-12 tracking-tight">
+          SCALE CONFIGURATION
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Scale Type Selector */}
           <div>
             <div className="flex items-center gap-1 mb-2">

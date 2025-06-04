@@ -103,9 +103,9 @@ export function PianoKeyboard({ scaleNotes }: PianoKeyboardProps) {
   };
 
   return (
-    <div className="minimal-card p-6">
-      <h2 className="text-lg font-semibold text-foreground mb-6">
-        Piano Keyboard
+    <div className="minimal-card p-12">
+      <h2 className="text-2xl font-bold text-black mb-12 tracking-tight">
+        PIANO KEYBOARD
       </h2>
       
       {/* Piano Keyboard Container */}

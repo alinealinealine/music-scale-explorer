@@ -65,32 +65,22 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Minimalist Header */}
-      <header className="bg-white border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      {/* Ultra-minimal Header */}
+      <header className="bg-white border-b-2 border-black">
+        <div className="max-w-7xl mx-auto px-8 py-12">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              {/* Musical note icon */}
-              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                <div className="w-3 h-3 rounded-full bg-primary"></div>
-              </div>
-              <h1 className="text-2xl font-semibold text-foreground">Scale Explorer</h1>
-            </div>
-            <div className="hidden md:flex items-center space-x-3">
-              <button className="minimal-btn text-sm text-muted-foreground hover:text-foreground">
-                Help
-              </button>
-              <button className="minimal-btn text-sm text-muted-foreground hover:text-foreground">
-                Settings
-              </button>
+            <div className="flex items-center space-x-4">
+              {/* Geometric yellow accent */}
+              <div className="w-12 h-4 bg-primary border-2 border-black"></div>
+              <h1 className="text-3xl font-bold text-black tracking-tight">SCALE EXPLORER</h1>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-6xl mx-auto px-8 py-16">
         {/* Scale Selector */}
-        <div className="mb-8">
+        <div className="mb-24">
           <ScaleSelector
             selectedScale={selectedScale}
             rootNote={rootNote}
@@ -103,12 +93,12 @@ export default function Home() {
         </div>
 
         {/* Piano Keyboard */}
-        <div className="mb-8">
+        <div className="mb-24">
           <PianoKeyboard scaleNotes={scaleNotes} />
         </div>
 
         {/* Scale Info */}
-        <div className="mb-8">
+        <div className="mb-24">
           <ScaleInfo
             selectedScale={selectedScale}
             rootNote={rootNote}

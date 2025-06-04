@@ -17,24 +17,24 @@
   --border: 0 0% 92%;
   --input: 0 0% 98%;
   
-  /* Music-inspired colors */
-  --primary: 220 13% 25%; /* Deep piano black */
-  --primary-foreground: 0 0% 100%;
-  --secondary: 25 65% 45%; /* Warm wood tone */
+  /* Ultra-minimal geometric colors */
+  --primary: 45 100% 60%; /* Bright yellow like reference */
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 0%; /* Pure black */
   --secondary-foreground: 0 0% 100%;
-  --accent: 200 50% 50%; /* Soft blue for highlights */
-  --accent-foreground: 0 0% 100%;
+  --accent: 45 100% 60%; /* Bright yellow */
+  --accent-foreground: 0 0% 0%;
   --destructive: 0 70% 55%;
   --destructive-foreground: 0 0% 100%;
-  --ring: 220 13% 25%;
-  --radius: 0.375rem; /* Subtle rounded corners */
+  --ring: 45 100% 60%;
+  --radius: 0rem; /* No rounded corners for geometric look */
   
-  /* Music-specific colors */
+  /* Minimal music colors */
   --piano-white: 0 0% 100%;
-  --piano-black: 220 13% 15%;
-  --active-note: 25 65% 45%; /* Warm highlight for active notes */
-  --scale-highlight: 200 50% 50%; /* Soft blue for scale info */
-  --tempo-color: 160 40% 45%; /* Muted green for tempo */
+  --piano-black: 0 0% 0%;
+  --active-note: 45 100% 60%; /* Bright yellow for active notes */
+  --scale-highlight: 45 100% 60%; /* Yellow for scale info */
+  --tempo-color: 45 100% 60%; /* Yellow for consistency */
 }
 
 .dark {
@@ -82,76 +82,80 @@
 }
 
 @layer components {
-  /* Minimalist card design */
+  /* Ultra-minimal geometric card design */
   .minimal-card {
-    @apply bg-card border border-border rounded-lg shadow-sm transition-all duration-200;
+    @apply bg-white border-2 border-black transition-all duration-200;
+    box-shadow: none;
   }
   
   .minimal-card:hover {
-    @apply shadow-md;
+    box-shadow: 4px 4px 0 hsl(var(--primary));
   }
 
-  /* Clean piano keys */
+  /* Geometric piano keys */
   .white-key {
-    @apply bg-white border border-gray-300 hover:bg-gray-50 transition-all duration-150;
-    @apply relative cursor-pointer select-none rounded-sm;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    @apply bg-white border-2 border-black transition-all duration-150;
+    @apply relative cursor-pointer select-none;
+    box-shadow: none;
   }
   
   .white-key:hover {
-    transform: translateY(1px);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    box-shadow: 2px 2px 0 hsl(var(--primary));
   }
   
   .white-key.active {
-    @apply text-white;
+    @apply text-black;
     background: hsl(var(--active-note));
-    border-color: hsl(var(--active-note));
-    transform: translateY(1px);
+    border-color: black;
+    box-shadow: 2px 2px 0 black;
   }
   
   .black-key {
     @apply transition-all duration-150;
-    @apply absolute top-0 z-10 cursor-pointer select-none rounded-sm;
-    background: hsl(var(--piano-black));
-    border: 1px solid hsl(var(--piano-black));
+    @apply absolute top-0 z-10 cursor-pointer select-none;
+    background: black;
+    border: 2px solid black;
   }
   
   .black-key:hover {
-    transform: translateY(1px);
     background: hsl(var(--primary));
+    border-color: black;
   }
   
   .black-key.active {
     background: hsl(var(--active-note));
-    border-color: hsl(var(--active-note));
-    transform: translateY(1px);
+    border-color: black;
   }
   
-  /* Clean button design */
+  /* Geometric button design */
   .minimal-btn {
-    @apply px-4 py-2 rounded-md font-medium transition-all duration-200;
-    @apply border border-border hover:border-primary/20;
+    @apply px-4 py-2 font-medium transition-all duration-200;
+    @apply border-2 border-black;
+    box-shadow: none;
+  }
+  
+  .minimal-btn:hover {
+    box-shadow: 2px 2px 0 black;
   }
   
   .minimal-btn.primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90;
-    border-color: transparent;
+    @apply bg-primary text-black;
+    border-color: black;
   }
   
   .minimal-btn.secondary {
-    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90;
-    border-color: transparent;
+    @apply bg-black text-white;
+    border-color: black;
   }
   
   .minimal-btn.accent {
-    @apply bg-accent text-accent-foreground hover:bg-accent/90;
-    border-color: transparent;
+    @apply bg-primary text-black;
+    border-color: black;
   }
   
-  /* Clean sliders */
+  /* Geometric sliders */
   .minimal-slider {
-    @apply appearance-none bg-muted h-2 rounded-full;
+    @apply appearance-none bg-white border-2 border-black h-3;
     outline: none;
   }
   
@@ -159,21 +163,19 @@
     appearance: none;
     height: 20px;
     width: 20px;
-    border-radius: 50%;
     background: hsl(var(--primary));
     cursor: pointer;
-    border: 2px solid white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border: 2px solid black;
+    box-shadow: none;
   }
 
   .minimal-slider::-moz-range-thumb {
     height: 16px;
     width: 16px;
-    border-radius: 50%;
     background: hsl(var(--primary));
     cursor: pointer;
-    border: 2px solid white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border: 2px solid black;
+    box-shadow: none;
   }
 }
 
