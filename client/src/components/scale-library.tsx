@@ -25,12 +25,12 @@ export function ScaleLibrary({ onSelectScale, rootNote, octave }: ScaleLibraryPr
   }));
 
   return (
-    <div className="minimal-card p-6">
-      <h2 className="text-lg font-semibold text-foreground mb-6">
-        Scale Library
+    <div className="minimal-card p-12">
+      <h2 className="text-2xl font-bold text-black mb-12 tracking-tight">
+        SCALE LIBRARY
       </h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {scales.map((scale) => (
           <div
             key={scale.key}

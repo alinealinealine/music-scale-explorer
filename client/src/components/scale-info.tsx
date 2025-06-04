@@ -37,9 +37,9 @@ export function ScaleInfo({ selectedScale, rootNote, scaleNotes, onSelectScale }
 
   return (
     <TooltipProvider>
-      <div className="minimal-card p-6">
-        <h3 className="text-lg font-semibold text-foreground mb-4">
-          Scale Information
+      <div className="minimal-card p-12">
+        <h3 className="text-2xl font-bold text-black mb-12 tracking-tight">
+          SCALE INFORMATION
         </h3>
         
         <div className="space-y-4">
