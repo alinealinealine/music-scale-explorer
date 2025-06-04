@@ -25,10 +25,9 @@ export function ScaleLibrary({ onSelectScale, rootNote, octave }: ScaleLibraryPr
   }));
 
   return (
-    <div className="bauhaus-card p-6">
-      <h2 className="text-xl font-black text-foreground mb-6 flex items-center">
-        <div className="bauhaus-square w-6 h-6 bg-accent mr-3"></div>
-        SCALE LIBRARY
+    <div className="minimal-card p-6">
+      <h2 className="text-lg font-semibold text-foreground mb-6">
+        Scale Library
       </h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -36,21 +35,20 @@ export function ScaleLibrary({ onSelectScale, rootNote, octave }: ScaleLibraryPr
           <div
             key={scale.key}
             onClick={() => onSelectScale(scale.key)}
-            className="border-2 border-black p-4 bg-white hover:bg-gray-50 transition-all cursor-pointer transform hover:translate-x-1 hover:translate-y-1"
-            style={{ boxShadow: '4px 4px 0 #000' }}
+            className="border border-border rounded-lg p-4 bg-card hover:bg-muted/50 transition-all cursor-pointer hover:shadow-md"
           >
             <div className="flex items-center justify-between mb-2">
-              <h3 className="font-black text-foreground uppercase tracking-wide text-sm">{scale.name}</h3>
+              <h3 className="font-medium text-foreground text-sm">{scale.name}</h3>
               <button
                 onClick={(e) => handlePlayPreview(scale.key, e)}
-                className="bauhaus-btn accent p-2 text-xs"
+                className="minimal-btn accent p-2 text-xs hover:bg-accent/20"
               >
                 <Play className="w-3 h-3" />
               </button>
             </div>
-            <p className="text-sm text-gray-700 font-medium mb-2">{scale.description}</p>
-            <div className="flex justify-between text-xs font-bold text-gray-600">
-              <span>{scale.noteCount} NOTES</span>
+            <p className="text-sm text-muted-foreground mb-2">{scale.description}</p>
+            <div className="flex justify-between text-xs text-muted-foreground">
+              <span>{scale.noteCount} notes</span>
               <span className="truncate ml-2">{scale.formula}</span>
             </div>
           </div>
