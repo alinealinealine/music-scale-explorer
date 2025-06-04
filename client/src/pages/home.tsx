@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Music, HelpCircle, Settings } from "lucide-react";
 import { ScaleSelector } from "@/components/scale-selector";
 import { PianoKeyboard } from "@/components/piano-keyboard";
-import { AudioControls } from "@/components/audio-controls";
+
 import { ScaleInfo } from "@/components/scale-info";
 import { ScaleLibrary } from "@/components/scale-library";
 import { audioEngine, PlayMode } from "@/lib/audio-engine";
@@ -12,12 +12,14 @@ import { Button } from "@/components/ui/button";
 export default function Home() {
   const [selectedScale, setSelectedScale] = useState('major');
   const [rootNote, setRootNote] = useState('C');
-  const [octave, setOctave] = useState(4);
-  const [tempo, setTempo] = useState(120);
-  const [noteDuration, setNoteDuration] = useState('quarter');
   const [playMode, setPlayMode] = useState<PlayMode>('ascending');
   const [isPlaying, setIsPlaying] = useState(false);
   const [scaleNotes, setScaleNotes] = useState<ScaleNote[]>([]);
+  
+  // Fixed defaults for beginners - no need to adjust these
+  const octave = 4;
+  const tempo = 120;
+  const noteDuration = 'quarter';
 
   // Update scale notes when scale, root note, or octave changes
   useEffect(() => {
@@ -92,11 +94,9 @@ export default function Home() {
           <ScaleSelector
             selectedScale={selectedScale}
             rootNote={rootNote}
-            octave={octave}
             isPlaying={isPlaying}
             onScaleChange={setSelectedScale}
             onRootNoteChange={setRootNote}
-            onOctaveChange={setOctave}
             onPlayScale={handlePlayScale}
             onStopAudio={handleStopAudio}
           />
@@ -107,17 +107,8 @@ export default function Home() {
           <PianoKeyboard scaleNotes={scaleNotes} />
         </div>
 
-        {/* Audio Controls and Scale Info */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          <AudioControls
-            tempo={tempo}
-            noteDuration={noteDuration}
-            playMode={playMode}
-            onTempoChange={setTempo}
-            onNoteDurationChange={setNoteDuration}
-            onPlayModeChange={setPlayMode}
-          />
-          
+        {/* Scale Info */}
+        <div className="mb-8">
           <ScaleInfo
             selectedScale={selectedScale}
             rootNote={rootNote}

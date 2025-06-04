@@ -5,11 +5,9 @@ import { SCALE_DEFINITIONS, NOTE_NAMES } from "@/lib/scale-definitions";
 interface ScaleSelectorProps {
   selectedScale: string;
   rootNote: string;
-  octave: number;
   isPlaying: boolean;
   onScaleChange: (scale: string) => void;
   onRootNoteChange: (note: string) => void;
-  onOctaveChange: (octave: number) => void;
   onPlayScale: () => void;
   onStopAudio: () => void;
 }
@@ -17,11 +15,9 @@ interface ScaleSelectorProps {
 export function ScaleSelector({
   selectedScale,
   rootNote,
-  octave,
   isPlaying,
   onScaleChange,
   onRootNoteChange,
-  onOctaveChange,
   onPlayScale,
   onStopAudio
 }: ScaleSelectorProps) {
@@ -47,7 +43,7 @@ export function ScaleSelector({
         Scale Configuration
       </h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Scale Type Selector */}
         <div>
           <label className="block text-sm font-medium text-muted-foreground mb-2">Scale Type</label>
@@ -75,23 +71,6 @@ export function ScaleSelector({
             <SelectContent>
               {rootNoteOptions.map(option => (
                 <SelectItem key={option.value} value={option.value}>
-                  {option.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* Octave Selector */}
-        <div>
-          <label className="block text-sm font-medium text-muted-foreground mb-2">Octave</label>
-          <Select value={octave.toString()} onValueChange={(value) => onOctaveChange(parseInt(value))}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select octave" />
-            </SelectTrigger>
-            <SelectContent>
-              {octaveOptions.map(option => (
-                <SelectItem key={option.value} value={option.value.toString()}>
                   {option.label}
                 </SelectItem>
               ))}

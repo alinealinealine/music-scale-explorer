@@ -109,8 +109,8 @@ export function PianoKeyboard({ scaleNotes }: PianoKeyboardProps) {
       </h2>
       
       {/* Piano Keyboard Container */}
-      <div className="relative overflow-x-auto pb-4">
-          <div className="piano-keyboard flex relative min-w-max mx-auto" style={{ width: `${whiteKeys.length * 60}px` }}>
+      <div className="relative overflow-hidden pb-4">
+          <div className="piano-keyboard flex relative mx-auto" style={{ width: `${whiteKeys.length * 60}px` }}>
             
             {/* White Keys */}
             {whiteKeys.map((note, index) => {
