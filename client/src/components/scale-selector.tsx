@@ -1,0 +1,126 @@
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Play, Square } from "lucide-react";
+import { SCALE_DEFINITIONS, NOTE_NAMES } from "@/lib/scale-definitions";
+
+interface ScaleSelectorProps {
+  selectedScale: string;
+  rootNote: string;
+  octave: number;
+  isPlaying: boolean;
+  onScaleChange: (scale: string) => void;
+  onRootNoteChange: (note: string) => void;
+  onOctaveChange: (octave: number) => void;
+  onPlayScale: () => void;
+  onStopAudio: () => void;
+}
+
+export function ScaleSelector({
+  selectedScale,
+  rootNote,
+  octave,
+  isPlaying,
+  onScaleChange,
+  onRootNoteChange,
+  onOctaveChange,
+  onPlayScale,
+  onStopAudio
+}: ScaleSelectorProps) {
+  const scaleOptions = Object.entries(SCALE_DEFINITIONS).map(([key, scale]) => ({
+    value: key,
+    label: scale.name
+  }));
+
+  const rootNoteOptions = NOTE_NAMES.map(note => {
+    const displayName = note.includes('#') ? `${note} / ${note.replace('#', 'b')}` : note;
+    return { value: note, label: displayName };
+  });
+
+  const octaveOptions = [
+    { value: 3, label: '3rd Octave' },
+    { value: 4, label: '4th Octave' },
+    { value: 5, label: '5th Octave' }
+  ];
+
+  return (
+    <Card className="shadow-sm border border-gray-200">
+      <CardContent className="p-6">
+        <h2 className="text-xl font-semibold text-gray-900 mb-6">Select Scale & Root Note</h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Scale Type Selector */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Scale Type</label>
+            <Select value={selectedScale} onValueChange={onScaleChange}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select a scale" />
+              </SelectTrigger>
+              <SelectContent>
+                {scaleOptions.map(option => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Root Note Selector */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Root Note</label>
+            <Select value={rootNote} onValueChange={onRootNoteChange}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select root note" />
+              </SelectTrigger>
+              <SelectContent>
+                {rootNoteOptions.map(option => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Octave Selector */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Octave</label>
+            <Select value={octave.toString()} onValueChange={(value) => onOctaveChange(parseInt(value))}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select octave" />
+              </SelectTrigger>
+              <SelectContent>
+                {octaveOptions.map(option => (
+                  <SelectItem key={option.value} value={option.value.toString()}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Play Controls */}
+          <div className="flex flex-col justify-end">
+            <Button 
+              onClick={onPlayScale}
+              className="bg-primary hover:bg-blue-700 text-white font-medium mb-2"
+              disabled={isPlaying}
+            >
+              <Play className="w-4 h-4 mr-2" />
+              {isPlaying ? 'Playing...' : 'Play Scale'}
+            </Button>
+            <Button 
+              onClick={onStopAudio}
+              variant="secondary"
+              className="bg-gray-500 hover:bg-gray-600 text-white font-medium"
+            >
+              <Square className="w-4 h-4 mr-2" />
+              Stop
+            </Button>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
