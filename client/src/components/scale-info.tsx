@@ -130,8 +130,8 @@ export function ScaleInfo({ selectedScale, rootNote, scaleNotes, onSelectScale }
             </div>
           </div>
         )}
+        </div>
       </div>
-    </div>
     </TooltipProvider>
   );
 }
