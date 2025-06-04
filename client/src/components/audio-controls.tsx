@@ -27,39 +27,38 @@ export function AudioControls({
   ];
 
   return (
-    <div className="bauhaus-card p-6">
-      <h3 className="text-lg font-black text-foreground mb-4 flex items-center">
-        <div className="w-4 h-4 bg-accent border-2 border-black mr-3"></div>
-        AUDIO CONTROLS
+    <div className="minimal-card p-6">
+      <h3 className="text-lg font-semibold text-foreground mb-4">
+        Audio Controls
       </h3>
       
-      <div className="space-y-6">
+      <div className="space-y-4">
         {/* Tempo Control */}
         <div>
-          <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide flex items-center">
+          <label className="block text-sm font-medium text-muted-foreground mb-2 flex items-center">
             <Gauge className="w-4 h-4 mr-2" />
-            TEMPO (BPM)
+            Tempo (BPM)
           </label>
           <div className="flex items-center space-x-3">
-            <span className="text-sm font-bold text-foreground">60</span>
+            <span className="text-sm text-muted-foreground">60</span>
             <input
               type="range"
               min="60"
               max="200"
               value={tempo}
               onChange={(e) => onTempoChange(parseInt(e.target.value))}
-              className="flex-1 bauhaus-slider"
+              className="flex-1 minimal-slider"
             />
-            <span className="text-sm font-bold text-foreground">200</span>
+            <span className="text-sm text-muted-foreground">200</span>
           </div>
-          <span className="text-sm font-bold text-secondary">{tempo} BPM</span>
+          <span className="text-sm font-medium text-tempo-color">{tempo} BPM</span>
         </div>
 
         {/* Note Duration */}
         <div>
-          <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">NOTE DURATION</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">Note Duration</label>
           <Select value={noteDuration} onValueChange={onNoteDurationChange}>
-            <SelectTrigger className="w-full border-2 border-black">
+            <SelectTrigger className="w-full">
               <SelectValue placeholder="Select note duration" />
             </SelectTrigger>
             <SelectContent>
@@ -74,32 +73,32 @@ export function AudioControls({
 
         {/* Play Mode */}
         <div>
-          <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">PLAY MODE</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">Play Mode</label>
           <div className="grid grid-cols-2 gap-2">
             <button
               onClick={() => onPlayModeChange('ascending')}
-              className={`bauhaus-btn px-3 py-2 text-xs ${
-                playMode === 'ascending' ? 'primary' : 'accent'
+              className={`minimal-btn px-3 py-2 text-xs ${
+                playMode === 'ascending' ? 'primary' : ''
               }`}
             >
-              ASCENDING
+              Ascending
             </button>
             <button
               onClick={() => onPlayModeChange('descending')}
-              className={`bauhaus-btn px-3 py-2 text-xs ${
-                playMode === 'descending' ? 'primary' : 'accent'
+              className={`minimal-btn px-3 py-2 text-xs ${
+                playMode === 'descending' ? 'primary' : ''
               }`}
             >
-              DESCENDING
+              Descending
             </button>
           </div>
           <button
             onClick={() => onPlayModeChange('both')}
-            className={`bauhaus-btn w-full mt-2 px-3 py-2 text-xs ${
-              playMode === 'both' ? 'primary' : 'accent'
+            className={`minimal-btn w-full mt-2 px-3 py-2 text-xs ${
+              playMode === 'both' ? 'primary' : ''
             }`}
           >
-            UP & DOWN
+            Up & Down
           </button>
         </div>
       </div>

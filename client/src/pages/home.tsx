@@ -63,25 +63,23 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Bauhaus Header */}
-      <header className="bg-white border-b-4 border-black">
+      {/* Minimalist Header */}
+      <header className="bg-white border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              {/* Geometric logo */}
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-primary border-2 border-black"></div>
-                <div className="w-6 h-6 bg-secondary border-2 border-black"></div>
-                <div className="w-4 h-4 bg-accent border-2 border-black"></div>
+            <div className="flex items-center space-x-3">
+              {/* Musical note icon */}
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <div className="w-3 h-3 rounded-full bg-primary"></div>
               </div>
-              <h1 className="text-3xl font-black text-foreground tracking-wider">SCALE EXPLORER</h1>
+              <h1 className="text-2xl font-semibold text-foreground">Scale Explorer</h1>
             </div>
             <div className="hidden md:flex items-center space-x-3">
-              <button className="bauhaus-btn accent px-4 py-2 text-sm">
-                HELP
+              <button className="minimal-btn text-sm text-muted-foreground hover:text-foreground">
+                Help
               </button>
-              <button className="bauhaus-btn primary px-4 py-2 text-sm">
-                SETTINGS
+              <button className="minimal-btn text-sm text-muted-foreground hover:text-foreground">
+                Settings
               </button>
             </div>
           </div>

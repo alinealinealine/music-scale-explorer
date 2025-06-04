@@ -103,10 +103,9 @@ export function PianoKeyboard({ scaleNotes }: PianoKeyboardProps) {
   };
 
   return (
-    <div className="bauhaus-card red p-6">
-      <h2 className="text-xl font-black text-foreground mb-6 flex items-center">
-        <div className="w-6 h-6 bg-primary border-2 border-black mr-3"></div>
-        PIANO KEYBOARD
+    <div className="minimal-card p-6">
+      <h2 className="text-lg font-semibold text-foreground mb-6">
+        Piano Keyboard
       </h2>
       
       {/* Piano Keyboard Container */}
@@ -161,14 +160,14 @@ export function PianoKeyboard({ scaleNotes }: PianoKeyboardProps) {
         </div>
 
       {/* Scale Degree Indicators */}
-      <div className="mt-4 flex flex-wrap justify-center gap-2">
+      <div className="mt-6 flex flex-wrap justify-center gap-2">
         {getScaleDegrees().map((degree, index) => (
           <div
             key={degree.degree}
-            className={`px-3 py-1 border-2 border-black font-bold text-xs uppercase tracking-wide ${
+            className={`px-3 py-1 rounded-md text-xs font-medium ${
               degree.isActive 
-                ? 'bg-secondary text-white' 
-                : 'bg-gray-200 text-gray-700'
+                ? 'bg-active-note/10 text-secondary border border-secondary/20' 
+                : 'bg-muted text-muted-foreground'
             }`}
           >
             {degree.degree} - {degree.name}

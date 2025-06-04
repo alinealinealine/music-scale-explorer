@@ -42,18 +42,17 @@ export function ScaleSelector({
   ];
 
   return (
-    <div className="bauhaus-card blue p-6">
-      <h2 className="text-xl font-black text-foreground mb-6 flex items-center">
-        <div className="bauhaus-triangle mr-3"></div>
-        SELECT SCALE & ROOT NOTE
+    <div className="minimal-card p-6">
+      <h2 className="text-lg font-semibold text-foreground mb-6">
+        Scale Configuration
       </h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Scale Type Selector */}
         <div>
-          <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">SCALE TYPE</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">Scale Type</label>
           <Select value={selectedScale} onValueChange={onScaleChange}>
-            <SelectTrigger className="w-full border-2 border-black">
+            <SelectTrigger className="w-full">
               <SelectValue placeholder="Select a scale" />
             </SelectTrigger>
             <SelectContent>
@@ -68,9 +67,9 @@ export function ScaleSelector({
 
         {/* Root Note Selector */}
         <div>
-          <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">ROOT NOTE</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">Root Note</label>
           <Select value={rootNote} onValueChange={onRootNoteChange}>
-            <SelectTrigger className="w-full border-2 border-black">
+            <SelectTrigger className="w-full">
               <SelectValue placeholder="Select root note" />
             </SelectTrigger>
             <SelectContent>
@@ -85,9 +84,9 @@ export function ScaleSelector({
 
         {/* Octave Selector */}
         <div>
-          <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">OCTAVE</label>
+          <label className="block text-sm font-medium text-muted-foreground mb-2">Octave</label>
           <Select value={octave.toString()} onValueChange={(value) => onOctaveChange(parseInt(value))}>
-            <SelectTrigger className="w-full border-2 border-black">
+            <SelectTrigger className="w-full">
               <SelectValue placeholder="Select octave" />
             </SelectTrigger>
             <SelectContent>
@@ -104,18 +103,18 @@ export function ScaleSelector({
         <div className="flex flex-col justify-end space-y-2">
           <button 
             onClick={onPlayScale}
-            className="bauhaus-btn primary px-4 py-3 text-sm disabled:opacity-50"
+            className="minimal-btn primary px-4 py-2 text-sm disabled:opacity-50"
             disabled={isPlaying}
           >
             <Play className="w-4 h-4 mr-2 inline" />
-            {isPlaying ? 'PLAYING...' : 'PLAY SCALE'}
+            {isPlaying ? 'Playing...' : 'Play Scale'}
           </button>
           <button 
             onClick={onStopAudio}
-            className="bauhaus-btn secondary px-4 py-3 text-sm"
+            className="minimal-btn text-sm"
           >
             <Square className="w-4 h-4 mr-2 inline" />
-            STOP
+            Stop
           </button>
         </div>
       </div>

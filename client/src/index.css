@@ -5,42 +5,36 @@
 @tailwind utilities;
 
 :root {
-  /* Bauhaus Color Palette */
-  --background: 0 0% 97%; /* Off-white */
-  --foreground: 0 0% 10%; /* Near black */
-  --muted: 0 0% 90%;
-  --muted-foreground: 0 0% 40%;
+  /* Minimalist Music-Focused Palette */
+  --background: 0 0% 99%; /* Pure white background */
+  --foreground: 0 0% 15%; /* Soft black text */
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 50%;
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 10%;
+  --popover-foreground: 0 0% 15%;
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 10%;
-  --border: 0 0% 85%;
-  --input: 0 0% 95%;
+  --card-foreground: 0 0% 15%;
+  --border: 0 0% 92%;
+  --input: 0 0% 98%;
   
-  /* Bauhaus Primary Colors */
-  --primary: 217 91% 60%; /* Blue */
+  /* Music-inspired colors */
+  --primary: 220 13% 25%; /* Deep piano black */
   --primary-foreground: 0 0% 100%;
-  --secondary: 358 75% 59%; /* Red */
+  --secondary: 25 65% 45%; /* Warm wood tone */
   --secondary-foreground: 0 0% 100%;
-  --accent: 48 89% 60%; /* Yellow */
-  --accent-foreground: 0 0% 10%;
-  --destructive: 358 75% 59%;
+  --accent: 200 50% 50%; /* Soft blue for highlights */
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 70% 55%;
   --destructive-foreground: 0 0% 100%;
-  --ring: 0 0% 10%;
-  --radius: 0rem; /* Sharp corners for Bauhaus */
+  --ring: 220 13% 25%;
+  --radius: 0.375rem; /* Subtle rounded corners */
   
-  /* Bauhaus specific colors */
-  --bauhaus-blue: 217 91% 60%;
-  --bauhaus-red: 358 75% 59%;
-  --bauhaus-yellow: 48 89% 60%;
-  --bauhaus-black: 0 0% 10%;
-  --bauhaus-white: 0 0% 97%;
-  --bauhaus-gray: 0 0% 70%;
-  
-  /* Music app specific */
-  --active-note: 358 75% 59%; /* Bauhaus red */
-  --white-key: 0 0% 100%;
-  --black-key: 0 0% 10%;
+  /* Music-specific colors */
+  --piano-white: 0 0% 100%;
+  --piano-black: 220 13% 15%;
+  --active-note: 25 65% 45%; /* Warm highlight for active notes */
+  --scale-highlight: 200 50% 50%; /* Soft blue for scale info */
+  --tempo-color: 160 40% 45%; /* Muted green for tempo */
 }
 
 .dark {
@@ -75,157 +69,111 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
     font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.025em;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.5;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    text-transform: none;
   }
 }
 
 @layer components {
-  /* Bauhaus geometric cards */
-  .bauhaus-card {
-    @apply bg-white border-2 border-black shadow-none transition-all duration-200;
-    box-shadow: 8px 8px 0 hsl(var(--accent));
+  /* Minimalist card design */
+  .minimal-card {
+    @apply bg-card border border-border rounded-lg shadow-sm transition-all duration-200;
   }
   
-  .bauhaus-card:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 10px 10px 0 hsl(var(--accent));
-  }
-  
-  .bauhaus-card.blue {
-    box-shadow: 8px 8px 0 hsl(var(--primary));
-  }
-  
-  .bauhaus-card.blue:hover {
-    box-shadow: 10px 10px 0 hsl(var(--primary));
-  }
-  
-  .bauhaus-card.red {
-    box-shadow: 8px 8px 0 hsl(var(--secondary));
-  }
-  
-  .bauhaus-card.red:hover {
-    box-shadow: 10px 10px 0 hsl(var(--secondary));
+  .minimal-card:hover {
+    @apply shadow-md;
   }
 
-  /* Bauhaus piano keys */
+  /* Clean piano keys */
   .white-key {
-    @apply bg-white border-2 border-black hover:bg-gray-50 transition-all duration-150;
-    @apply relative cursor-pointer select-none;
-    box-shadow: 0 4px 0 #000;
+    @apply bg-white border border-gray-300 hover:bg-gray-50 transition-all duration-150;
+    @apply relative cursor-pointer select-none rounded-sm;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
   
   .white-key:hover {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 #000;
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
   }
   
   .white-key.active {
     @apply text-white;
-    background: hsl(var(--secondary));
-    border-color: hsl(var(--secondary));
-    box-shadow: 0 2px 0 #000;
-    transform: translateY(2px);
+    background: hsl(var(--active-note));
+    border-color: hsl(var(--active-note));
+    transform: translateY(1px);
   }
   
   .black-key {
-    @apply hover:bg-gray-700 transition-all duration-150;
-    @apply absolute top-0 z-10 cursor-pointer select-none;
-    background: #000;
-    border: 2px solid #000;
+    @apply transition-all duration-150;
+    @apply absolute top-0 z-10 cursor-pointer select-none rounded-sm;
+    background: hsl(var(--piano-black));
+    border: 1px solid hsl(var(--piano-black));
   }
   
   .black-key:hover {
-    transform: translateY(2px);
-    background: #333;
+    transform: translateY(1px);
+    background: hsl(var(--primary));
   }
   
   .black-key.active {
-    background: hsl(var(--secondary));
-    border-color: hsl(var(--secondary));
-    transform: translateY(2px);
+    background: hsl(var(--active-note));
+    border-color: hsl(var(--active-note));
+    transform: translateY(1px);
   }
   
-  /* Bauhaus buttons */
-  .bauhaus-btn {
-    @apply font-bold uppercase tracking-wider border-2 border-black shadow-none transition-all duration-200;
-    box-shadow: 4px 4px 0 #000;
+  /* Clean button design */
+  .minimal-btn {
+    @apply px-4 py-2 rounded-md font-medium transition-all duration-200;
+    @apply border border-border hover:border-primary/20;
   }
   
-  .bauhaus-btn:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 5px 5px 0 #000;
+  .minimal-btn.primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+    border-color: transparent;
   }
   
-  .bauhaus-btn:active {
-    transform: translate(1px, 1px);
-    box-shadow: 2px 2px 0 #000;
+  .minimal-btn.secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90;
+    border-color: transparent;
   }
   
-  .bauhaus-btn.primary {
-    background: hsl(var(--primary));
-    color: white;
+  .minimal-btn.accent {
+    @apply bg-accent text-accent-foreground hover:bg-accent/90;
+    border-color: transparent;
   }
   
-  .bauhaus-btn.secondary {
-    background: hsl(var(--secondary));
-    color: white;
-  }
-  
-  .bauhaus-btn.accent {
-    background: hsl(var(--accent));
-    color: black;
-  }
-  
-  /* Bauhaus sliders */
-  .bauhaus-slider {
-    @apply appearance-none bg-gray-200 h-3 border-2 border-black;
+  /* Clean sliders */
+  .minimal-slider {
+    @apply appearance-none bg-muted h-2 rounded-full;
     outline: none;
   }
   
-  .bauhaus-slider::-webkit-slider-thumb {
+  .minimal-slider::-webkit-slider-thumb {
     appearance: none;
-    height: 24px;
-    width: 24px;
-    border-radius: 0;
-    background: hsl(var(--primary));
-    cursor: pointer;
-    border: 2px solid #000;
-    box-shadow: 2px 2px 0 #000;
-  }
-
-  .bauhaus-slider::-moz-range-thumb {
     height: 20px;
     width: 20px;
-    border-radius: 0;
+    border-radius: 50%;
     background: hsl(var(--primary));
     cursor: pointer;
-    border: 2px solid #000;
-    box-shadow: 2px 2px 0 #000;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
-  
-  /* Geometric shapes */
-  .bauhaus-circle {
-    @apply rounded-full border-2 border-black;
-  }
-  
-  .bauhaus-triangle {
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 17px solid hsl(var(--accent));
-  }
-  
-  .bauhaus-square {
-    @apply border-2 border-black;
-    aspect-ratio: 1;
+
+  .minimal-slider::-moz-range-thumb {
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: hsl(var(--primary));
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
 }
 
