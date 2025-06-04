@@ -13,7 +13,6 @@ export default function Home() {
   const [selectedScale, setSelectedScale] = useState('major');
   const [rootNote, setRootNote] = useState('C');
   const [octave, setOctave] = useState(4);
-  const [volume, setVolume] = useState(75);
   const [tempo, setTempo] = useState(120);
   const [noteDuration, setNoteDuration] = useState('quarter');
   const [playMode, setPlayMode] = useState<PlayMode>('ascending');
@@ -43,11 +42,11 @@ export default function Home() {
     }
 
     const frequencies = scaleNotes.map(note => note.frequency);
-    const volumeDecimal = volume / 100;
+    const defaultVolume = 0.3; // Fixed volume since we removed the volume control
     
     setIsPlaying(true);
     try {
-      await audioEngine.playScale(frequencies, tempo, volumeDecimal, playMode);
+      await audioEngine.playScale(frequencies, tempo, defaultVolume, playMode);
     } finally {
       setIsPlaying(false);
     }
@@ -113,11 +112,9 @@ export default function Home() {
         {/* Audio Controls and Scale Info */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           <AudioControls
-            volume={volume}
             tempo={tempo}
             noteDuration={noteDuration}
             playMode={playMode}
-            onVolumeChange={setVolume}
             onTempoChange={setTempo}
             onNoteDurationChange={setNoteDuration}
             onPlayModeChange={setPlayMode}
