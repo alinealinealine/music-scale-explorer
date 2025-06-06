@@ -53,8 +53,18 @@ export function ScaleSelector({
               <TooltipTrigger asChild>
                 <HelpCircle className="w-3 h-3 text-muted-foreground cursor-help" />
               </TooltipTrigger>
-              <TooltipContent className="max-w-[300px] sm:max-w-none">
-                <p>A scale is a collection of musical notes that follow a specific pattern. Think of it like a recipe for creating melodies. Different scales create different moods - major scales sound happy and bright, while minor scales sound sad and mysterious. Each scale has its own unique character and is used in different styles of music.</p>
+              <TooltipContent className="max-w-[300px] sm:max-w-[400px] p-4">
+                <div className="space-y-2">
+                  <p className="font-medium">What is a Scale?</p>
+                  <p>A scale is a collection of musical notes that follow a specific pattern. Think of it like a recipe for creating melodies.</p>
+                  <p className="font-medium">Different Types of Scales:</p>
+                  <ul className="list-disc pl-4 space-y-1">
+                    <li>Major scales: Sound happy and bright</li>
+                    <li>Minor scales: Sound sad and mysterious</li>
+                    <li>Each scale has its own unique character</li>
+                    <li>Used in different styles of music</li>
+                  </ul>
+                </div>
               </TooltipContent>
             </Tooltip>
           </div>
@@ -80,8 +90,18 @@ export function ScaleSelector({
               <TooltipTrigger asChild>
                 <HelpCircle className="w-3 h-3 text-muted-foreground cursor-help" />
               </TooltipTrigger>
-              <TooltipContent className="max-w-[300px] sm:max-w-none">
-                <p>The root note is the foundation of your scale - it's the first note and gives the scale its name. For example, in a C Major scale, C is the root note. It's like the home base of your musical journey, and all other notes in the scale are built around it. The root note helps determine the overall pitch of the scale.</p>
+              <TooltipContent className="max-w-[300px] sm:max-w-[400px] p-4">
+                <div className="space-y-2">
+                  <p className="font-medium">What is a Root Note?</p>
+                  <p>The root note is the foundation of your scale - it's the first note and gives the scale its name.</p>
+                  <p className="font-medium">Examples:</p>
+                  <ul className="list-disc pl-4 space-y-1">
+                    <li>In a C Major scale, C is the root note</li>
+                    <li>It's like the home base of your musical journey</li>
+                    <li>All other notes in the scale are built around it</li>
+                    <li>Helps determine the overall pitch of the scale</li>
+                  </ul>
+                </div>
               </TooltipContent>
             </Tooltip>
           </div>
