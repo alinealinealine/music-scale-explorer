@@ -1,4 +1,3 @@
-
 import { audioEngine } from "@/lib/audio-engine";
 import { ScaleNote, getAllPianoNotes, NOTE_NAMES } from "@/lib/scale-definitions";
 import { useState } from "react";
@@ -103,68 +102,75 @@ export function PianoKeyboard({ scaleNotes }: PianoKeyboardProps) {
   };
 
   return (
-    <div className="minimal-card p-12">
-      <h2 className="text-2xl font-bold text-black mb-12 tracking-tight">
+    <div className="minimal-card p-4 sm:p-12">
+      <h2 className="text-xl sm:text-2xl font-bold text-black mb-6 sm:mb-12 tracking-tight">
         PIANO KEYBOARD
       </h2>
       
       {/* Piano Keyboard Container */}
-      <div className="relative overflow-hidden pb-4">
-          <div className="piano-keyboard flex relative mx-auto" style={{ width: `${whiteKeys.length * 60}px` }}>
+      <div className="relative overflow-x-auto pb-4">
+        <div className="piano-keyboard flex relative mx-auto" style={{ 
+          width: `${whiteKeys.length * 40}px`,
+          minWidth: '100%'
+        }}>
+          {/* White Keys */}
+          {whiteKeys.map((note, index) => {
+            const noteKey = `${note.name}${note.octave}`;
+            const isInScale = isNoteInScale(note.name, note.octave);
+            const isPlaying = playingNote === noteKey;
             
-            {/* White Keys */}
-            {whiteKeys.map((note, index) => {
-              const noteKey = `${note.name}${note.octave}`;
-              const isInScale = isNoteInScale(note.name, note.octave);
-              const isPlaying = playingNote === noteKey;
-              
-              return (
-                <button
-                  key={noteKey}
-                  onClick={() => handleNoteClick(note.name, note.octave, note.frequency)}
-                  className={`white-key ${isInScale ? 'active' : ''} ${isPlaying ? 'opacity-50' : ''}`}
-                  style={{ width: '60px', height: '200px' }}
-                >
-                  <span className={`absolute bottom-2 text-xs font-medium ${isInScale ? 'text-white' : 'text-gray-600'}`}>
-                    {note.name}
-                  </span>
-                </button>
-              );
-            })}
+            return (
+              <button
+                key={noteKey}
+                onClick={() => handleNoteClick(note.name, note.octave, note.frequency)}
+                className={`white-key ${isInScale ? 'active' : ''} ${isPlaying ? 'opacity-50' : ''}`}
+                style={{ 
+                  width: '40px', 
+                  height: '160px',
+                  minWidth: '40px'
+                }}
+              >
+                <span className={`absolute bottom-2 text-[10px] sm:text-xs font-medium ${isInScale ? 'text-white' : 'text-gray-600'}`}>
+                  {note.name}
+                </span>
+              </button>
+            );
+          })}
 
-            {/* Black Keys */}
-            {blackKeys.map((note) => {
-              const noteKey = `${note.name}${note.octave}`;
-              const isInScale = isNoteInScale(note.name, note.octave);
-              const isPlaying = playingNote === noteKey;
-              const leftPosition = getBlackKeyPosition(note.name, note.octave);
-              
-              return (
-                <button
-                  key={noteKey}
-                  onClick={() => handleNoteClick(note.name, note.octave, note.frequency)}
-                  className={`black-key ${isInScale ? 'active' : ''} ${isPlaying ? 'opacity-50' : ''}`}
-                  style={{ 
-                    width: '40px', 
-                    height: '120px', 
-                    left: `${leftPosition}px` 
-                  }}
-                >
-                  <span className="absolute bottom-2 text-xs font-medium text-white">
-                    {note.name.replace('#', '♯')}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+          {/* Black Keys */}
+          {blackKeys.map((note) => {
+            const noteKey = `${note.name}${note.octave}`;
+            const isInScale = isNoteInScale(note.name, note.octave);
+            const isPlaying = playingNote === noteKey;
+            const leftPosition = getBlackKeyPosition(note.name, note.octave);
+            
+            return (
+              <button
+                key={noteKey}
+                onClick={() => handleNoteClick(note.name, note.octave, note.frequency)}
+                className={`black-key ${isInScale ? 'active' : ''} ${isPlaying ? 'opacity-50' : ''}`}
+                style={{ 
+                  width: '24px', 
+                  height: '100px',
+                  minWidth: '24px',
+                  left: `${leftPosition * (40/60)}px` 
+                }}
+              >
+                <span className="absolute bottom-2 text-[10px] sm:text-xs font-medium text-white">
+                  {note.name.replace('#', '♯')}
+                </span>
+              </button>
+            );
+          })}
         </div>
+      </div>
 
       {/* Scale Degree Indicators */}
-      <div className="mt-6 flex flex-wrap justify-center gap-2">
+      <div className="mt-4 sm:mt-6 flex flex-wrap justify-center gap-1 sm:gap-2">
         {getScaleDegrees().map((degree, index) => (
           <div
             key={degree.degree}
-            className={`px-3 py-1 rounded-md text-xs font-medium ${
+            className={`px-2 sm:px-3 py-1 rounded-md text-[10px] sm:text-xs font-medium ${
               degree.isActive 
                 ? 'bg-active-note/10 text-secondary border border-secondary/20' 
                 : 'bg-muted text-muted-foreground'

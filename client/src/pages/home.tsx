@@ -67,20 +67,20 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       {/* Ultra-minimal Header */}
       <header className="bg-white border-b-2 border-black">
-        <div className="max-w-7xl mx-auto px-8 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 py-6 sm:py-12">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               {/* Geometric yellow accent */}
-              <div className="w-12 h-4 bg-primary border-2 border-black"></div>
-              <h1 className="text-3xl font-bold text-black tracking-tight">SCALE EXPLORER</h1>
+              <div className="w-8 sm:w-12 h-3 sm:h-4 bg-primary border-2 border-black"></div>
+              <h1 className="text-xl sm:text-3xl font-bold text-black tracking-tight">SCALE EXPLORER</h1>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-8 py-16">
+      <main className="max-w-6xl mx-auto px-4 sm:px-8 py-8 sm:py-16">
         {/* Scale Selector */}
-        <div className="mb-24">
+        <div className="mb-12 sm:mb-24">
           <ScaleSelector
             selectedScale={selectedScale}
             rootNote={rootNote}
@@ -93,12 +93,12 @@ export default function Home() {
         </div>
 
         {/* Piano Keyboard */}
-        <div className="mb-24">
+        <div className="mb-12 sm:mb-24">
           <PianoKeyboard scaleNotes={scaleNotes} />
         </div>
 
         {/* Scale Info */}
-        <div className="mb-24">
+        <div className="mb-12 sm:mb-24">
           <ScaleInfo
             selectedScale={selectedScale}
             rootNote={rootNote}

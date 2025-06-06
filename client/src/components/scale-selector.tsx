@@ -39,12 +39,12 @@ export function ScaleSelector({
   ];
 
   return (
-    <div className="minimal-card p-12">
-      <h2 className="text-2xl font-bold text-black mb-12 tracking-tight">
+    <div className="minimal-card p-4 sm:p-12">
+      <h2 className="text-xl sm:text-2xl font-bold text-black mb-6 sm:mb-12 tracking-tight">
         SCALE CONFIGURATION
       </h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
         {/* Scale Type Selector */}
         <div>
           <div className="flex items-center gap-1 mb-2">
@@ -53,7 +53,7 @@ export function ScaleSelector({
               <TooltipTrigger asChild>
                 <HelpCircle className="w-3 h-3 text-muted-foreground cursor-help" />
               </TooltipTrigger>
-              <TooltipContent>
+              <TooltipContent className="max-w-[300px] sm:max-w-none">
                 <p>A scale is a collection of musical notes that follow a specific pattern. Think of it like a recipe for creating melodies. Different scales create different moods - major scales sound happy and bright, while minor scales sound sad and mysterious. Each scale has its own unique character and is used in different styles of music.</p>
               </TooltipContent>
             </Tooltip>
@@ -80,7 +80,7 @@ export function ScaleSelector({
               <TooltipTrigger asChild>
                 <HelpCircle className="w-3 h-3 text-muted-foreground cursor-help" />
               </TooltipTrigger>
-              <TooltipContent>
+              <TooltipContent className="max-w-[300px] sm:max-w-none">
                 <p>The root note is the foundation of your scale - it's the first note and gives the scale its name. For example, in a C Major scale, C is the root note. It's like the home base of your musical journey, and all other notes in the scale are built around it. The root note helps determine the overall pitch of the scale.</p>
               </TooltipContent>
             </Tooltip>
@@ -100,10 +100,10 @@ export function ScaleSelector({
         </div>
 
         {/* Play Controls */}
-        <div className="flex flex-col justify-end space-y-2">
+        <div className="flex flex-row md:flex-col justify-end space-x-2 md:space-x-0 md:space-y-2">
           <button 
             onClick={onPlayScale}
-            className="minimal-btn primary px-4 py-2 text-sm disabled:opacity-50"
+            className="minimal-btn primary px-4 py-2 text-sm disabled:opacity-50 flex-1 md:flex-none"
             disabled={isPlaying}
           >
             <Play className="w-4 h-4 mr-2 inline" />
@@ -111,7 +111,7 @@ export function ScaleSelector({
           </button>
           <button 
             onClick={onStopAudio}
-            className="minimal-btn text-sm"
+            className="minimal-btn text-sm flex-1 md:flex-none"
           >
             <Square className="w-4 h-4 mr-2 inline" />
             Stop
